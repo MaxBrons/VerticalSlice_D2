@@ -10,8 +10,9 @@ public class Weapons : MonoBehaviour
     protected float attackSpeed;
     protected string weaponName;
 
-    private GameObject[] weapon_Gameobjects;
+    [SerializeField] private GameObject[] weapon_Gameobjects;
     private GameObject weapon_Slot;
+    private int weapon_selected = 0;
 
     public virtual void Update()
     {
@@ -23,18 +24,19 @@ public class Weapons : MonoBehaviour
 
     private void ChangeWeapon(int index, string trigger)
     {
-        if (weapon_Slot != null)
+        weapon_Slot = weapon_Gameobjects[index];
+        weapon_selected = index;
+        int i = 0;
+        foreach (Transform w in fpsCamera.transform)
         {
-            Transform current = fpsCamera.transform.GetChild(0).transform;
-            Destroy(weapon_Slot.gameObject);
-            animator.SetTrigger(trigger);
-            weapon_Slot = weapon_Gameobjects[index];
-            Instantiate(weapon_Slot, current.position, current.rotation, fpsCamera.transform);
+            if (i == weapon_selected)
+            {
+                weapon_Slot = weapon_Gameobjects[index];
+                weapon_Slot.SetActive(true);
+            }
+            else { w.gameObject.SetActive(false); }
+            i++;
         }
-        else
-        {
-            weapon_Slot = weapon_Gameobjects[0];
-            ChangeWeapon(index, trigger);
-        }
+        //animator.SetTrigger(trigger);
     }
 }

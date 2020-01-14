@@ -10,7 +10,8 @@ public class Shotgun : Weapons
 
     private void Awake()
     {
-        this.animator = GameObject.FindGameObjectWithTag(ConstClass.SHOTGUN_NAME).GetComponent<Animator>();
+        this.fpsCamera = Camera.main;
+        //this.animator = GetComponent<Animator>();
         this.range = ConstClass.SHOTGUN_RANGE;
         this.damage = ConstClass.SHOTGUN_DAMAGE;
         this.attackSpeed = ConstClass.SHOTGUN_ATACKSPEED;
@@ -27,13 +28,13 @@ public class Shotgun : Weapons
             shoot_Timer = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-            StartCoroutine(Reload());
+        //if (Input.GetKeyDown(KeyCode.R))
+            //StartCoroutine(Reload());
     }
 
     private IEnumerator Reload()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
+        /*if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0))
         {
             //Start reload animation
 
@@ -41,7 +42,8 @@ public class Shotgun : Weapons
                 yield return null;
 
             bullets_Magazine--;
-        }
+        }*/
+        yield return null;
     }
 
     private void Shoot()

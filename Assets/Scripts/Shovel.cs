@@ -8,7 +8,8 @@ public class Shovel : Weapons
 
     private void Awake()
     {
-        this.animator = GameObject.FindGameObjectWithTag(ConstClass.SHOVEL_NAME).GetComponent<Animator>();
+        this.fpsCamera = Camera.main;
+        //this.animator = GetComponent<Animator>();
         this.range = ConstClass.SHOVEL_RANGE;
         this.damage = ConstClass.SHOVEL_DAMAGE;
         this.attackSpeed = ConstClass.SHOVEL_ATACKSPEED;
@@ -17,6 +18,7 @@ public class Shovel : Weapons
 
     public override void Update()
     {
+        base.Update();
         hit_Timer += Time.deltaTime;
         if (Input.GetMouseButtonDown(0) && hit_Timer >= attackSpeed)
         {

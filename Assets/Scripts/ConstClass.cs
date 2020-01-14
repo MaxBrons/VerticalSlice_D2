@@ -9,13 +9,13 @@ class ConstClass : MonoBehaviour
     #region Weapons
     #region Weapons.Shotgun
     public const string SHOTGUN_NAME = "Shotgun";
-    public const float SHOTGUN_RANGE = 100;
+    public const float SHOTGUN_RANGE = 50;
     public const float SHOTGUN_DAMAGE = 300;
     public const float SHOTGUN_ATACKSPEED = 0.6f;
     #endregion Weapons.Shotgun
     #region Weapons.Shovel
     public const string SHOVEL_NAME = "Shovel";
-    public const float SHOVEL_RANGE = 50;
+    public const float SHOVEL_RANGE = 5;
     public const float SHOVEL_DAMAGE = 300;
     public const float SHOVEL_ATACKSPEED = 1f;
     #endregion
