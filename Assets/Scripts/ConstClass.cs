@@ -6,6 +6,13 @@ class ConstClass : MonoBehaviour
 {
     public const string TARGET_NAME = "Target";
 
+    #region Player
+    public const string HORIZONTAL = "Horizontal";
+    public const string VERTICAL = "Vertical";
+    public const string MOUSEX = "Mouse X";
+    public const string MOUSEY = "Mouse Y";
+    #endregion
+
     #region Weapons
     #region Weapons.Shotgun
     public const string SHOTGUN_NAME = "Shotgun";
