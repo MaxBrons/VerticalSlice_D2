@@ -54,8 +54,11 @@ public class Shotgun : Weapons
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            if (hit.transform.tag == ConstClass.TARGET_NAME)
-                hit.transform.GetComponent<Target>().Hit();
+            Vector3 forward = fpsCamera.transform.TransformDirection(Vector3.forward) * 10;
+            Debug.DrawRay(fpsCamera.transform.position, forward, Color.green);
+            Debug.Log(hit.transform.name);
+            if (hit.transform.gameObject.tag == ConstClass.TARGET_NAME)
+                hit.transform.gameObject.GetComponent<Target>().Hit();
         }
     }
 }
