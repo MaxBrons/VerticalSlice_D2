@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    private float rotationSpeed = 50;
+    [SerializeField] private float rotationSpeed = 50;
     private float movementSpeed = 30;
     private int health = 200;
     private bool isCrouching = false;
     private bool isJumping = false;
+    private Vector2 mouseLook;
+    private Vector2 smoothV;
 
     private void Start()
     {
@@ -18,7 +20,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        float x = Input.GetAxisRaw(ConstClass.MOUSEX) * rotationSpeed * Time.deltaTime;
-        float y = Input.GetAxisRaw(ConstClass.MOUSEY) * rotationSpeed * Time.deltaTime;
+        Vector2 md = new Vector2(-Input.GetAxisRaw("Mouse Y"), Input.GetAxisRaw("Mouse X"));
+        mouseLook.x = Mathf.Clamp(mouseLook.x, -70f, 70f);
+        mouseLook.y = Mathf.Clamp(mouseLook.y, -90f, 90f);
+        mouseLook += md;
+        cam.transform.localRotation = Quaternion.Euler(mouseLook);
     }
 }

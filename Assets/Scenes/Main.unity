@@ -672,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1725169181}
+  rotationSpeed: 10
 --- !u!1 &1725169178
 GameObject:
   m_ObjectHideFlags: 0
