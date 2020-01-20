@@ -29,15 +29,15 @@ public class TargetPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(target1, midFront.transform.position, transform.rotation);
+        var rot = Quaternion.Euler(0, 90, 0);
+        Instantiate(target1, midFront.transform.position, rot);
+        Instantiate(target3, leftBack.transform.position, rot);
+        Instantiate(target3, midBack.transform.position, rot);
+        Instantiate(target3, rightBack.transform.position, rot);
 
-        Instantiate(target3, leftBack.transform.position, transform.rotation);
-        Instantiate(target3, midBack.transform.position, transform.rotation);
-        Instantiate(target3, rightBack.transform.position, transform.rotation);
-
-        Instantiate(target2, leftMid.transform.position, transform.rotation);
-        Instantiate(target2, midMid.transform.position, transform.rotation);
-        Instantiate(target2, rightMid.transform.position, transform.rotation);
+        Instantiate(target2, leftMid.transform.position, rot);
+        Instantiate(target2, midMid.transform.position, rot);
+        Instantiate(target2, rightMid.transform.position, rot);
     }
 
     // Update is called once per frame
