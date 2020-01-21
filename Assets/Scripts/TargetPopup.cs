@@ -25,24 +25,44 @@ public class TargetPopup : MonoBehaviour
     [Header("Front Row")]
     [SerializeField] private Transform midFront;
     
-
+    public int totalTargetsShot = 0;
+    public bool spawned = false;
     // Start is called before the first frame update
-    void Start()
+
+    private void Update()
     {
         var rot = Quaternion.Euler(0, 90, 0);
-        Instantiate(target1, midFront.transform.position, rot);
-        Instantiate(target3, leftBack.transform.position, rot);
-        Instantiate(target3, midBack.transform.position, rot);
-        Instantiate(target3, rightBack.transform.position, rot);
-
-        Instantiate(target2, leftMid.transform.position, rot);
-        Instantiate(target2, midMid.transform.position, rot);
-        Instantiate(target2, rightMid.transform.position, rot);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (totalTargetsShot == 0 && spawned == false)
+        {
+            Instantiate(target1, midFront.transform.position, rot);
+            spawned = true;
+        }
+        if (totalTargetsShot == 1 && spawned == false)
+        {
+            Instantiate(target3, leftBack.transform.position, rot);
+            Instantiate(target3, rightBack.transform.position, rot);
+            spawned = true;
+        }
+        if (totalTargetsShot == 3 && spawned == false)
+        {
+            Instantiate(target2, leftMid.transform.position, rot);
+            spawned = true;
+        }
+        if (totalTargetsShot == 4 && spawned == false)
+        {
+            Instantiate(target2, rightMid.transform.position, rot);
+            spawned = true;
+        }
+        if (totalTargetsShot == 5 && spawned == false)
+        {
+            Instantiate(target3, midBack.transform.position, rot);
+            spawned = true;
+        }
+        if (totalTargetsShot == 6 && spawned == false)
+        {
+            Instantiate(target2, midMid.transform.position, rot);
+            spawned = true;
+            totalTargetsShot = 0;
+        }
     }
 }
