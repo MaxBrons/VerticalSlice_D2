@@ -35,4 +35,11 @@ class ConstClass : MonoBehaviour
     public const string SHOVEL_SWAP_TRIGGER = "Swap_Shovel";
     public const string SHOVEL_SWING_TRIGGER = "Swing_Shovel";
     #endregion
+
+    #region Tags
+    #region Tags.Environment
+    public const string GROUND_TAG = "Ground";
+    public const string BUILDING_TAG = "Building";
+    #endregion
+    #endregion
 }
