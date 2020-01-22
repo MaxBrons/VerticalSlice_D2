@@ -6,7 +6,8 @@ public class Shotgun : Weapons
 {
     private float shoot_Timer = 0;
     private int bullets_Magazine = 6;
-    private int bullets_Reserve = 30;
+    private int bullets_Reserve = 50;
+    private UserInterface UI;
 
     private void Awake()
     {
@@ -16,6 +17,8 @@ public class Shotgun : Weapons
         this.damage = ConstClass.SHOTGUN_DAMAGE;
         this.attackSpeed = ConstClass.SHOTGUN_ATACKSPEED;
         this.name = ConstClass.SHOTGUN_NAME;
+
+        UI = GameObject.Find(ConstClass.UI).GetComponent<UserInterface>();
     }
 
     public override void Update()
@@ -30,6 +33,9 @@ public class Shotgun : Weapons
 
         if (Input.GetKeyDown(KeyCode.R))
             StartCoroutine(Reload());
+
+        UI.Ammo.text = bullets_Magazine.ToString();
+        UI.Reserve.text = bullets_Reserve.ToString();
     }
 
     public void LoadBullet()

@@ -5,7 +5,7 @@ using UnityEngine;
 class ConstClass : MonoBehaviour
 {
     public const string TARGET_NAME = "Target";
-
+    public const string UI = "UI";
     #region Player
     public const string HORIZONTAL = "Horizontal";
     public const string VERTICAL = "Vertical";
