@@ -49,13 +49,13 @@ public class Shotgun : Weapons
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !animator.IsInTransition(0) && bullets_Magazine < 6)
         {
             //Start reload animation
-            animator.SetBool("Reloading", true);
-            animator.SetTrigger("Reload");
+            animator.SetBool(ConstClass.SHOTGUN_RELOAD_BOOLEAN, true);
+            animator.SetTrigger(ConstClass.SHOTGUN_RELOAD_TRIGGER);
 
-            while (animator.GetBool("Reloading") == true)
+            while (animator.GetBool(ConstClass.SHOTGUN_RELOAD_BOOLEAN) == true)
             {
                 if(bullets_Magazine >= 6)
-                    animator.SetBool("Reloading", false);
+                    animator.SetBool(ConstClass.SHOTGUN_RELOAD_BOOLEAN, false);
 
                 yield return null;
             }  
@@ -71,9 +71,10 @@ public class Shotgun : Weapons
                 yield return null;
 
             //Start shotgun shoot animation
-            animator.SetTrigger("Shoot");
+            animator.SetTrigger(ConstClass.SHOTGUN_SHOOT_TRIGGER);
 
-            animator.SetBool("Reloading", false);
+            //Resets the reload animation
+            animator.SetBool(ConstClass.SHOTGUN_RELOAD_BOOLEAN, false);
             bullets_Magazine--;
 
             RaycastHit hit;
