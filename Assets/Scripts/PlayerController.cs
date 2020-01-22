@@ -6,18 +6,17 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     private float rotationSpeed = 50;
-    private float movementSpeed = 20;
+    private float movementSpeed = 5;
     private int health = 200;
     private bool isCrouching = false;
     private bool isJumping = false;
     private Vector2 mouseLook;
     private Vector2 smoothV;
-    private Rigidbody rb;
-    private float xRot = 0;
+    private float mouseX = 0;
+    private float mouseY = 0;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -28,13 +27,12 @@ public class PlayerController : MonoBehaviour
         mouseLook += md;
         cam.transform.localRotation = Quaternion.Euler(mouseLook);
         Quaternion rot = cam.transform.localRotation;*/
-        float mouseX = Input.GetAxisRaw(ConstClass.MOUSEX) * movementSpeed * Time.deltaTime;
-        float mouseY = Input.GetAxisRaw(ConstClass.MOUSEY) * movementSpeed * Time.deltaTime;
-        xRot += mouseY;
-        xRot = Mathf.Clamp(xRot, -90, 90);
+        mouseY += Input.GetAxisRaw(ConstClass.MOUSEX) * rotationSpeed * Time.deltaTime;
+        mouseX -= Input.GetAxisRaw(ConstClass.MOUSEY) * rotationSpeed * Time.deltaTime;
 
-        transform.localRotation = cam.transform.rotation;
-        cam.transform.Rotate(Vector3.up * mouseX);
+        mouseX = Mathf.Clamp(mouseX, -90, 90);
+        transform.rotation = Quaternion.Euler(0, mouseY, 0);
+        cam.transform.rotation = Quaternion.Euler(mouseX, mouseY, 0);
     }
 
     private void FixedUpdate()
@@ -43,9 +41,9 @@ public class PlayerController : MonoBehaviour
         float vAxis = Input.GetAxis(ConstClass.VERTICAL);
 
         Vector3 hMove = hAxis * transform.right;
-        Vector3 vMove = vAxis * transform.forward;
-        Vector3 Movement = transform.position + (hMove + vMove).normalized * movementSpeed * Time.fixedDeltaTime;
+        Vector3 vMove = vAxis * cam.transform.forward;
+        Vector3 Movement = (hMove + vMove) * movementSpeed * Time.deltaTime;
 
-        rb.MovePosition(Movement);
+        transform.position += Movement;
     }
 }
