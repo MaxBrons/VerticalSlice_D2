@@ -31,8 +31,8 @@ class ConstClass : MonoBehaviour
     #region Animation
     public const string SHOTGUN_SWAP_TRIGGER = "Swap_Shotgun";
     public const string SHOTGUN_RELOAD_TRIGGER = "Reload";
+    public const string SHOTGUN_RELOAD_BOOLEAN = "Reloading";
     public const string SHOTGUN_SHOOT_TRIGGER = "Shoot";
-    public const string SHOTGUN_RELOAD_BOOLEAN = "Shooting";
     public const string SHOVEL_SWAP_TRIGGER = "Swap_Shovel";
     public const string SHOVEL_SWING_TRIGGER = "Swing_Shovel";
     #endregion
