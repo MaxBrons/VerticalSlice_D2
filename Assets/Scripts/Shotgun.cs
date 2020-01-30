@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Shotgun : Weapons
 {
+    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private Transform barrel;
     private float shoot_Timer = 0;
     private int bullets_Magazine = 6;
-    private int bullets_Reserve = 50;
+    private int bullets_Reserve = 32;
     private UserInterface UI;
 
     private void Awake()
@@ -65,13 +67,13 @@ public class Shotgun : Weapons
 
     private IEnumerator Shoot()
     {
-        if (bullets_Magazine > 0)
+        if (bullets_Magazine > 0 && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
         {
-            while (animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
-                yield return null;
-
             //Start shotgun shoot animation
             animator.SetTrigger(ConstClass.SHOTGUN_SHOOT_TRIGGER);
+
+            //Starts the particle systems
+            Instantiate(ps, barrel.position, transform.rotation);
 
             //Resets the reload animation
             animator.SetBool(ConstClass.SHOTGUN_RELOAD_BOOLEAN, false);

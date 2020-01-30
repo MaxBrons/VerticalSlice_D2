@@ -1243,6 +1243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon_Gameobjects: []
+  ps: {fileID: 3002027347279672765, guid: 2bdc898972e45224ead1b977e0cce70e, type: 3}
+  barrel: {fileID: 2097405085000311692}
 --- !u!1 &4338111693601571366
 GameObject:
   m_ObjectHideFlags: 0
